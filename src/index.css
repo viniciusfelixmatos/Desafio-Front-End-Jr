@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+/* Colors: */
+--unnamed-color-f8f0e5: #F8F0E5;
+--unnamed-color-eadbc8: #EADBC8;
+--unnamed-color-dac0a3: #DAC0A3;
+--unnamed-color-102c57: #102C57;
+--unnamed-color-f2f2f2: #F2F2F2;
+--unnamed-color-333333: #333333;
+--unnamed-color-eadbc8: #EADBC8;
+--primary-font: 'League Spartan', sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
