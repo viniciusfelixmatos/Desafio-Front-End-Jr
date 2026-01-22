@@ -1,4 +1,8 @@
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+
 import Recommendation from '../main components/recommendation/Recommendation'
+import Midia from '../main components/midia/Midia'
 import './Main.css'
 
 function Main() {
@@ -59,82 +63,102 @@ function Main() {
                 </div>
             </section>
 
-            {/*SEÇÃO DE ELENCO*/} 
+            {/* SEÇÃO DE ELENCO */}
             <section className="main__cast">
                 <div className="container-xl main__cast-content">
                     <div className="cast__header mb-3">
                         <h2 className="cast__title fw-bold mb-0">Elenco</h2>
                         <a href="#" className="button__link">Ver mais</a>
                     </div>
+
                     <div className="cast__carousel">
-                        <div className="owl-carousel owl-theme">
-                            <div className="item">
-                                <img src="./public/imgs/1.png" alt="Elenco 1"/>
-                                <div className="item__container">
-                                    <h3>Margot Robbie</h3>
-                                    <p>Barbie</p>
+                        <Swiper
+                            className="cast-swiper"
+                            spaceBetween={10}
+                            slidesPerView={6}
+                            breakpoints={{
+                                0: { slidesPerView: 2 },
+                                576: { slidesPerView: 3 },
+                                768: { slidesPerView: 4 },
+                                992: { slidesPerView: 6 }
+                            }}
+                        >
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="Margot Robbie" />
+                                    <div className="item__container">
+                                        <h3>Margot Robbie</h3>
+                                        <p>Barbie</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/2.png" alt="Elenco 2"/>
-                                <div className="item__container">
-                                    <h3>Ryan Gosling</h3>
-                                    <p>Ken</p>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="Ryan Gosling" />
+                                    <div className="item__container">
+                                        <h3>Ryan Gosling</h3>
+                                        <p>Ken</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/3.png" alt="Elenco 3"/>
-                                <div className="item__container">
-                                    <h3>America Ferrera</h3>
-                                    <p>Gloria</p>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
+                                    <div className="item__container">
+                                        <h3>America Ferrera</h3>
+                                        <p>Gloria</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/4.png" alt="Elenco 4"/>
-                                <div className="item__container">
-                                    <h3>Simu Liu</h3>
-                                    <p>Ken</p>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
+                                    <div className="item__container">
+                                        <h3>America Ferrera</h3>
+                                        <p>Gloria</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/5.png" alt="Elenco 5"/>
-                                <div className="item__container">
-                                    <h3>Ariana Greenblatt</h3>
-                                    <p>Sasha</p>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
+                                    <div className="item__container">
+                                        <h3>America Ferrera</h3>
+                                        <p>Gloria</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/6.png" alt="Elenco 6"/>
-                                <div className="item__container">
-                                    <h3>Kate McKinnon</h3>
-                                    <p>Weird Barbie</p>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
+                                    <div className="item__container">
+                                        <h3>America Ferrera</h3>
+                                        <p>Gloria</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/7.png" alt="Elenco 7"/>
-                                <div className="item__container">
-                                    <h3>Asha Leo</h3>
-                                    <p>Barbie</p>
+                            </SwiperSlide>
+
+                            <SwiperSlide>
+                                <div className="item">
+                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
+                                    <div className="item__container">
+                                        <h3>America Ferrera</h3>
+                                        <p>Gloria</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/8.png" alt="Elenco 8"/>
-                                <div className="item__container">
-                                    <h3>Hari Nef</h3>
-                                    <p>Barbie</p>
-                                </div>
-                            </div>
-                            <div className="item">
-                                <img src="./public/imgs/9.png" alt="Elenco 9"/>
-                                <div className="item__container">
-                                    <h3>Tommy Dorfman</h3>
-                                    <p>Ken</p>
-                                </div>
-                            </div>
-                        </div>
+                            </SwiperSlide>
+
+                            {/* Repete o padrão para os demais */}
+                        </Swiper>
                     </div>
                 </div>
             </section>
+
             <section className="reviews container-xl">
                 <div className="reviews__content">
                     <div className="reviews__header"></div>
@@ -162,6 +186,7 @@ function Main() {
                     </div>
                 </div>
             </section>
+            <Midia />
             <Recommendation />
             
         </main>

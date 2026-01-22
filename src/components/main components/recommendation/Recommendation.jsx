@@ -1,27 +1,36 @@
-import './Recommendation.js'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+
 import './Recommendation.css'
 
 function Recommendation() {
     return (
-        <div className="recomm">
+        <section className="recomm">
             <div className="container-xl">
-                <div></div>
-                <div class="owl-carousel owl-theme">
-                    <div class="item"><h4>1</h4></div>
-                    <div class="item"><h4>2</h4></div>
-                    <div class="item"><h4>3</h4></div>
-                    <div class="item"><h4>4</h4></div>
-                    <div class="item"><h4>5</h4></div>
-                    <div class="item"><h4>6</h4></div>
-                    <div class="item"><h4>7</h4></div>
-                    <div class="item"><h4>8</h4></div>
-                    <div class="item"><h4>9</h4></div>
-                    <div class="item"><h4>10</h4></div>
-                    <div class="item"><h4>11</h4></div>
-                    <div class="item"><h4>12</h4></div>
+                <div className="recomm-header">
+                    <h2>Recomendações</h2>
+                </div>
+
+                <div className="recomm-carousel">
+                    <Swiper
+                        spaceBetween={20}
+                        slidesPerView={5}
+                        breakpoints={{
+                            0: { slidesPerView: 1 },
+                            576: { slidesPerView: 2 },
+                            992: { slidesPerView: 5 }
+                        }}
+                    >
+                        <SwiperSlide><div className="item"><img src="" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div className="item"><img src="" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div className="item"><img src="" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div className="item"><img src="" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div className="item"><img src="" alt="" /></div></SwiperSlide>
+                        <SwiperSlide><div className="item"><img src="" alt="" /></div></SwiperSlide>
+                    </Swiper>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

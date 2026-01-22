@@ -56,7 +56,7 @@ main {
 
 .main__cast {
     width: 100%;
-    background-color: var(--unnamed-color-dfd7bf);
+    background-color: var(--unnamed-color-eadbc8);
     font-family: var(--primary-font);
 }
 
@@ -91,13 +91,14 @@ main {
     border: 2px solid var(--unnamed-color-3f2305);
 }
 
-/* CAST CAROUSEL */
+/* CAST CAROUSEL - SWIPER */
 
 .cast__carousel {
     position: relative;
     padding: 0 0.625rem;
 }
 
+/* Gradiente lateral (efeito fade) */
 .cast__carousel::before,
 .cast__carousel::after {
     content: '';
@@ -107,32 +108,47 @@ main {
     width: 6.25rem;
     z-index: 2;
     pointer-events: none;
+}
+
+.cast__carousel::before {
+    left: 0;
+    background: linear-gradient(
+        to right,
+        var(--cor-de-fundo, var(--unnamed-color-dfd7bf)),
+        transparent
+    );
+}
+
+.cast__carousel::after {
     right: 0;
-    background: linear-gradient(to left, var(--cor-de-fundo, var(--unnamed-color-dfd7bf)), transparent);
+    background: linear-gradient(
+        to left,
+        var(--cor-de-fundo, var(--unnamed-color-dfd7bf)),
+        transparent
+    );
 }
 
-.cast__carousel img {
-    height: 100%;
-    width: 100%;
-    max-height: 190px;
-    max-width: 190px;
-}
-
-.main__cast-content {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-}
-
+/* Card do elenco */
 .item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.5rem;
     gap: 1.25rem;
+    font-size: 1.5rem;
     color: var(--unnamed-color-333333);
     max-width: 11.875rem;
     text-align: center;
+}
+
+/* Imagem */
+.cast__carousel img {
+    width: 190px;
+    height: 190px;
+    max-width: 190px;
+    max-height: 190px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .item h3 {
@@ -142,6 +158,11 @@ main {
 
 .item p {
     margin-bottom: 0;
+}
+
+.main__cast-content {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
 /* REVIEWS */

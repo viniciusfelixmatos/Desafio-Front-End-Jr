@@ -38,7 +38,7 @@ footer {
     bottom: -4px;
     width: 0;
     height: 2px;
-    background-color: var(--unnamed-color-dfd7bf);
+    background-color: var(--unnamed-color-102c57);
     transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
