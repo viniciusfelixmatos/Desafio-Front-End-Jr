@@ -14,12 +14,25 @@ function App() {
 
   const [Movie, setMovie] = useState(null);
   const [director, setDirector] = useState("");
+  const [config, setConfig] = useState(null);
 
   useEffect(() => {
     async function fetchMovieData() {
       try {
         const movieResponse = await axios.get(
           'https://api.themoviedb.org/3/movie/346698',
+          {
+            headers: {
+              Authorization: `Bearer ${Token}`
+            },
+            params: {
+              language: 'pt-BR'
+            }
+          }
+        );
+
+        const configResponse = await axios.get (
+          'https://api.themoviedb.org/3/configuration',
           {
             headers: {
               Authorization: `Bearer ${Token}`
@@ -44,8 +57,10 @@ function App() {
         );
 
         setMovie(movieResponse.data);
-        setDirector(directorData?.name || "Não informado");
-
+        setDirector(directorData || "Não informado");
+        setConfig(configResponse.data);
+        console.log(movieResponse.data);
+        console.log(directorData);
       } catch (error) {
         console.error(error);
       }
@@ -56,7 +71,7 @@ function App() {
   return (
     <>
       <Header />
-      <Main movie={Movie} director={director}/>
+      <Main movie={Movie} director={director} config={config} />
       <Footer />
     </>
   );

@@ -18,13 +18,13 @@ main {
     max-height: 37.5rem;
 }
 
-
 .main__banner {
     max-width: 430px;
     max-height: 630px;
 }
 
 .main__banner img {
+    border-radius: 0.625rem;
     height: 100%;
     width: 100%;
 }
@@ -89,6 +89,11 @@ main {
     background-color: var(--unnamed-color-f2ead3);
     color: var(--unnamed-color-3f2305);
     border: 2px solid var(--unnamed-color-3f2305);
+}
+
+.main__film-info h2 span {
+    color: var(--unnamed-color-eadbc8);
+    font-weight: normal;
 }
 
 /* CAST CAROUSEL - SWIPER */
@@ -225,4 +230,37 @@ main {
 .review-card__author strong {
     color: var(--unnamed-color-102c57);;
     font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    
+    .main__content {
+        max-height: 100%;
+    }
+    
+    .main__intro {
+        flex-direction: column;
+        gap: 3.125rem;
+        max-height: none;
+    }
+
+    .main__banner {
+        max-width: 100%;
+        max-height: none;
+    }
+
+    .main__content {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .reviews__grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .review-card {
+        max-height: none;
+    }
+
 }

@@ -11,6 +11,30 @@ function Main({ movie, director }) {
         return <div>Carregando...</div>;
     }
 
+    // Função para transformar o idioma original do filme
+    function transformLanguage(original_language) {
+        const LanguageMap = {
+            "en": "Inglês",
+            "pt": "Português",
+            "es": "Espanhol",
+        }
+        return LanguageMap[original_language] || original_language;
+    }
+
+    // Função para transformar o status do filme
+    function transformStatus(status) {
+        const StatusMap = {
+            "Released": "Lançado",
+        }
+        return StatusMap[status] || status;
+    }
+
+    function getImageUrl(path) {
+        const baseUrl = "https://image.tmdb.org/t/p/";
+        const size = "original";
+        return `${baseUrl}${size}${path}`;
+    }
+
     function formatCurrency(value) {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -24,7 +48,7 @@ function Main({ movie, director }) {
             <section className="container-xl main__intro">
                 {/* Banner do Filme Barbie */}
                 <div className="main__banner">
-                    <img src="./public/imgs/logo-escura.png" alt="Logo do Filme da barbie"/>
+                    <img src={getImageUrl(movie.poster_path)} alt="Logo do Filme da barbie"/>
                 </div>
                 <div className="main__content">
                     <div className="main__film-info">
@@ -45,11 +69,11 @@ function Main({ movie, director }) {
                             <div className="col ps-0">
                                 <div>
                                     <h3>Dirigido por:</h3>
-                                    <p>Greta Gerwig</p>
+                                    <p>{director.name}</p>
                                 </div>
                                 <div>
                                     <h3>Situação:</h3>
-                                    <p>Lançado</p>
+                                    <p>{transformStatus(movie.status)}</p>
                                 </div>
                                 <div>
                                     <h3>Orçamento:</h3>
@@ -63,7 +87,7 @@ function Main({ movie, director }) {
                                 </div>
                                 <div>
                                     <h3>Idioma original:</h3>
-                                    <p>Inglês</p>
+                                    <p>{transformLanguage(movie.original_language)}</p>
                                 </div>
                                 <div>
                                     <h3>Receita:</h3>

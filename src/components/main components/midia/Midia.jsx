@@ -18,7 +18,7 @@ function Midia() {
                     <div className="midia__videos-content">
                         <Swiper
                             spaceBetween={20}
-                            slidesPerView={3}
+                            slidesPerView={'auto'}
                             breakpoints={{
                                 0: { slidesPerView: 1 },
                                 576: { slidesPerView: 2 },
@@ -42,7 +42,7 @@ function Midia() {
                     <div className="midia__poster-content">
                         <Swiper
                             spaceBetween={20}
-                            slidesPerView={3}
+                            slidesPerView={'auto'}
                             breakpoints={{
                                 0: { slidesPerView: 1 },
                                 576: { slidesPerView: 2 },
