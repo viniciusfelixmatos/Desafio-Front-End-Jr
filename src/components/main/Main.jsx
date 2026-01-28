@@ -5,7 +5,19 @@ import Recommendation from '../main components/recommendation/Recommendation'
 import Midia from '../main components/midia/Midia'
 import './Main.css'
 
-function Main() {
+function Main({ movie, director }) {
+
+    if (!movie || !director) {
+        return <div>Carregando...</div>;
+    }
+
+    function formatCurrency(value) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        }).format(value);
+    }
+
     return (
         <main>
             {/* SEÇÃO DE INTRODUÇÃO */}
@@ -17,15 +29,15 @@ function Main() {
                 <div className="main__content">
                     <div className="main__film-info">
                         <h2>
-                            Barbie <span>(2023)</span>
+                            {movie.title} <span>(2023)</span>
                         </h2>
                         <div className="main__section">
                             <h3>Gênero:</h3>
-                            <p>Comédia, Aventura, Fantasia</p>
+                            <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
                         </div>
                         <div className="main__section">
                             <h3>Sinopse:</h3>
-                            <p>No mundo mágico das Barbies, "Barbieland", uma das bonecas começa a perceber que não se encaixa como as outras. Depois de ser expulsa, ela parte para uma aventura no "mundo real", onde descobre que a beleza está no interior de cada um.</p>
+                            <p>{movie.overview}</p>
                         </div>
                     </div>
                     <div className="container">
@@ -41,7 +53,7 @@ function Main() {
                                 </div>
                                 <div>
                                     <h3>Orçamento:</h3>
-                                    <p>$145,000,000.00</p>
+                                    <p>{movie?.budget > 0 ? formatCurrency(movie.budget):"Orçamento não informado"}</p>
                                 </div>
                             </div>
                             <div className="col ps-0">
