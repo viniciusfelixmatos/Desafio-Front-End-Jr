@@ -5,7 +5,7 @@ import Recommendation from '../main components/recommendation/Recommendation'
 import Midia from '../main components/midia/Midia'
 import './Main.css'
 
-function Main({ movie, director }) {
+function Main({ movie, director, cast }) {
 
     if (!movie || !director) {
         return <div>Carregando...</div>;
@@ -40,6 +40,24 @@ function Main({ movie, director }) {
             style: "currency",
             currency: "USD"
         }).format(value);
+    }
+
+    /* Função para rendeziar os cards do Elenco */ 
+    function handleCast() {
+        /* Utilização do Map no array 'cast' */
+        return cast.map(member => (
+            /*Elemento Swiper que contém o card*/
+            <SwiperSlide>
+                <div className="item">
+                    <img src={getImageUrl(member.profile_path)} alt={member.name} />
+                    <div className="item__container">
+                        <h3>{member.name}</h3>
+                        <p>{member.character}</p>
+                    </div>
+                </div>
+            </SwiperSlide>
+            
+        ));
     }
 
     return (
@@ -119,77 +137,10 @@ function Main({ movie, director }) {
                                 992: { slidesPerView: 6 }
                             }}
                         >
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="Margot Robbie" />
-                                    <div className="item__container">
-                                        <h3>Margot Robbie</h3>
-                                        <p>Barbie</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
 
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="Ryan Gosling" />
-                                    <div className="item__container">
-                                        <h3>Ryan Gosling</h3>
-                                        <p>Ken</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
+                        {/* Função para renderizar os cards do Elenco*/}    
+                        {handleCast()}
 
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
-                                    <div className="item__container">
-                                        <h3>America Ferrera</h3>
-                                        <p>Gloria</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
-                                    <div className="item__container">
-                                        <h3>America Ferrera</h3>
-                                        <p>Gloria</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
-                                    <div className="item__container">
-                                        <h3>America Ferrera</h3>
-                                        <p>Gloria</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
-                                    <div className="item__container">
-                                        <h3>America Ferrera</h3>
-                                        <p>Gloria</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-
-                            <SwiperSlide>
-                                <div className="item">
-                                    <img src="/imgs/Duncan-o-Alto-TV-show.png" alt="America Ferrera" />
-                                    <div className="item__container">
-                                        <h3>America Ferrera</h3>
-                                        <p>Gloria</p>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-
-                            {/* Repete o padrão para os demais */}
                         </Swiper>
                     </div>
                 </div>

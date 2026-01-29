@@ -22,17 +22,28 @@
 
 .midia__poster-content {
     display: flex;
+    /*
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    */
+    /*
     gap: 1.25rem;
+    */
 }
 
 .item-poster {
-    height: 440px;
-    width: 295px;
+    max-height: 440px;
+    max-width: 295px;
     border-radius: 0.625rem;
     background-color: red;
+}
+
+.item-poster img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.625rem;
+    object-fit: cover;
 }
 
 .item-background {

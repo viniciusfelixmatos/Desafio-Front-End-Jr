@@ -20,7 +20,7 @@ function Midia() {
                             spaceBetween={20}
                             slidesPerView={'auto'}
                             breakpoints={{
-                                0: { slidesPerView: 1 },
+                                0: { slidesPerView: 2 },
                                 576: { slidesPerView: 2 },
                                 992: { slidesPerView: 3 }
                             }}
@@ -42,21 +42,21 @@ function Midia() {
                     <div className="midia__poster-content">
                         <Swiper
                             spaceBetween={20}
-                            slidesPerView={'auto'}
+                            slidesPerView={'4'}
                             breakpoints={{
-                                0: { slidesPerView: 1 },
-                                576: { slidesPerView: 2 },
+                                320: { slidesPerView: 1, spaceBetween: 20 },
+                                576: { slidesPerView: 3 },
                                 992: { slidesPerView: 4 }
                             }}
                         >
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
-                            <SwiperSlide><div className="item-poster"><img src="" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
+                            <SwiperSlide><div className="item-poster"><img src="/imgs/Duncan-o-Alto-TV-show.png" alt="" /></div></SwiperSlide>
                         </Swiper>
                     </div>
                 </div>

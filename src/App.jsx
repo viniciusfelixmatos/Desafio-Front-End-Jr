@@ -14,7 +14,9 @@ function App() {
 
   const [Movie, setMovie] = useState(null);
   const [director, setDirector] = useState("");
+  const [cast, setCast] = useState([]);
   const [config, setConfig] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     async function fetchMovieData() {
@@ -43,6 +45,18 @@ function App() {
           }
         );
 
+        const reviewResponse = await axios.get(
+          'https://api.themoviedb.org/3/movie/346698/reviews',
+          {
+            headers: {
+              Authorization: `Bearer ${Token}`
+            },
+            params: {
+              language: 'pt-BR'
+            }
+          }
+        )
+
         const creditsResponse = await axios.get(
           'https://api.themoviedb.org/3/movie/346698/credits',
           {
@@ -56,11 +70,20 @@ function App() {
           person => person.job === 'Director'
         );
 
+        // Pegando os 5 primeiros atores do Elenco
+        const castData = creditsResponse.data.cast.slice(0, 15);
+        setCast(castData);
+
         setMovie(movieResponse.data);
         setDirector(directorData || "Não informado");
         setConfig(configResponse.data);
+        setReviews(reviewResponse.data);
+
         console.log(movieResponse.data);
+        console.log(movieResponse);
         console.log(directorData);
+        console.log(creditsResponse);
+        console.log(reviews);
       } catch (error) {
         console.error(error);
       }
@@ -71,7 +94,7 @@ function App() {
   return (
     <>
       <Header />
-      <Main movie={Movie} director={director} config={config} />
+      <Main movie={Movie} director={director} config={config} cast={cast} />
       <Footer />
     </>
   );
