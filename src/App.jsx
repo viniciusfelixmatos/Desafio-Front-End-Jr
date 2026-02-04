@@ -17,10 +17,12 @@ function App() {
   const [cast, setCast] = useState([]);
   const [config, setConfig] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     async function fetchMovieData() {
       try {
+        /* Dados do Filme */ 
         const movieResponse = await axios.get(
           'https://api.themoviedb.org/3/movie/346698',
           {
@@ -33,6 +35,7 @@ function App() {
           }
         );
 
+        /* Dados ?? */ 
         const configResponse = await axios.get (
           'https://api.themoviedb.org/3/configuration',
           {
@@ -45,6 +48,7 @@ function App() {
           }
         );
 
+        /* Dados das reviews do Filme */
         const reviewResponse = await axios.get(
           'https://api.themoviedb.org/3/movie/346698/reviews',
           {
@@ -57,6 +61,20 @@ function App() {
           }
         )
 
+        /* Dados dos videos do Filme */
+        const videosResponse = await axios.get(
+          'https://api.themoviedb.org/3/movie/346698/videos',
+          {
+            headers: {
+              Authorization: `Bearer ${Token}`
+            },
+            params: {
+              language: 'pt-BR'
+            }
+          }
+        )
+
+        /* Dados dos crditos do Filme */
         const creditsResponse = await axios.get(
           'https://api.themoviedb.org/3/movie/346698/credits',
           {
@@ -77,13 +95,15 @@ function App() {
         setMovie(movieResponse.data);
         setDirector(directorData || "Não informado");
         setConfig(configResponse.data);
-        setReviews(reviewResponse.data);
+        setReviews(reviewResponse.data.results);
+        setVideos(videosResponse);
 
         console.log(movieResponse.data);
         console.log(movieResponse);
         console.log(directorData);
         console.log(creditsResponse);
-        console.log(reviews);
+        console.log(reviewResponse);
+        console.log(videosResponse);
       } catch (error) {
         console.error(error);
       }
@@ -94,7 +114,7 @@ function App() {
   return (
     <>
       <Header />
-      <Main movie={Movie} director={director} config={config} cast={cast} />
+      <Main movie={Movie} director={director} config={config} cast={cast} reviews={reviews} />
       <Footer />
     </>
   );

@@ -227,6 +227,15 @@ main {
     margin-bottom: 0;
 }
 
+.review-card__content {
+    overflow-y: auto;
+    max-height: 24rem;
+    scrollbar-width: auto;
+    scrollbar-color: var(--unnamed-color-102c57) var(--unnamed-color-eadbc8);
+
+
+}
+
 .review-card__author strong {
     color: var(--unnamed-color-102c57);;
     font-weight: bold;
