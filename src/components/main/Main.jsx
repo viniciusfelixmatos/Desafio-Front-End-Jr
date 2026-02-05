@@ -5,7 +5,10 @@ import Recommendation from '../main components/recommendation/Recommendation'
 import Midia from '../main components/midia/Midia'
 import './Main.css'
 
-function Main({ movie, director, cast, reviews }) {
+function Main({ movie, director, cast, reviews, videos }) {
+
+
+    console.log(videos, " Camarão MAIN")
 
     if (!movie || !director) {
         return <div>Carregando...</div>;
@@ -43,6 +46,8 @@ function Main({ movie, director, cast, reviews }) {
             currency: "USD"
         }).format(value);
     }
+
+    console.log(cast, "Elenco");
 
     /* Função para rendeziar os cards do Elenco */ 
     function handleCast() {
@@ -168,7 +173,10 @@ function Main({ movie, director, cast, reviews }) {
 
             <section className="reviews container-xl">
                 <div className="reviews__content">
-                    <div className="reviews__header"></div>
+                    <div className="reviews__header">
+                        <h2 className="reviews__title fw-bold mb-0">Resenhas</h2>
+                        <a href="#" className="button__link">Ver mais</a>
+                    </div>
                     <div className="reviews__grid">
                         <Swiper
                             className="cast-swiper"
@@ -202,7 +210,7 @@ function Main({ movie, director, cast, reviews }) {
                     </div>
                 </div>
             </section>
-            <Midia />
+            <Midia videos={videos}/>
             <Recommendation />
             
         </main>

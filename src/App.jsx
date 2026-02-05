@@ -96,7 +96,7 @@ function App() {
         setDirector(directorData || "Não informado");
         setConfig(configResponse.data);
         setReviews(reviewResponse.data.results);
-        setVideos(videosResponse);
+        setVideos(videosResponse.data.results);
 
         console.log(movieResponse.data);
         console.log(movieResponse);
@@ -114,7 +114,7 @@ function App() {
   return (
     <>
       <Header />
-      <Main movie={Movie} director={director} config={config} cast={cast} reviews={reviews} />
+      <Main movie={Movie} director={director} config={config} cast={cast} reviews={reviews} videos={videos}/>
       <Footer />
     </>
   );

@@ -3,7 +3,27 @@ import 'swiper/css'
 
 import './Midia.css'
 
-function Midia() {
+function Midia({videos}) {
+    
+
+    console.log(videos, "Camara")
+
+    {/*CAMARAO*/ }
+    console.log(videos.key, "CAMARAO");
+
+    function handleVideos() {
+        return videos.map(video => (
+            <SwiperSlide>
+                <div className="item-midia">
+                    <iframe width="420" height="315"
+                        src={`https://www.youtube.com/watch?v=${video.key}`}>
+                    </iframe>
+                </div>
+            </SwiperSlide>
+        ));
+    };
+
+    
     return (
         <section className="midia">
             <div className="container-xl">
@@ -25,12 +45,24 @@ function Midia() {
                                 992: { slidesPerView: 3 }
                             }}
                         >
+                            {/* Função para gerar os swiper dinâmicamente*/}
+
+                            {handleVideos()}
+
+                            {/* 
+
+                            <iframe width="420" height="315"
+                                src="https://www.youtube.com/watch?v=MQHzdpnOq48">
+                            </iframe>
+
+
                             <SwiperSlide><div className="item-midia"><img src="" alt="" /></div></SwiperSlide>
                             <SwiperSlide><div className="item-midia"><img src="" alt="" /></div></SwiperSlide>
                             <SwiperSlide><div className="item-midia"><img src="" alt="" /></div></SwiperSlide>
                             <SwiperSlide><div className="item-midia"><img src="" alt="" /></div></SwiperSlide>
                             <SwiperSlide><div className="item-midia"><img src="" alt="" /></div></SwiperSlide>
                             <SwiperSlide><div className="item-midia"><img src="" alt="" /></div></SwiperSlide>
+                            */}
                         </Swiper>
                     </div>
                 </div>

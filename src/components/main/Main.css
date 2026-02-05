@@ -232,13 +232,16 @@ main {
     max-height: 24rem;
     scrollbar-width: auto;
     scrollbar-color: var(--unnamed-color-102c57) var(--unnamed-color-eadbc8);
-
-
 }
 
 .review-card__author strong {
     color: var(--unnamed-color-102c57);;
     font-weight: bold;
+}
+
+.reviews__title {
+    color: var(--unnamed-color-102c57);
+    font-size: 2.25rem;
 }
 
 @media (max-width: 768px) {
