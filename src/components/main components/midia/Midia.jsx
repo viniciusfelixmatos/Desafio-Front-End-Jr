@@ -97,12 +97,6 @@ function Midia({videos, posters, backgrounds}) {
         };
     }, [backgrounds]);
 
-
-
-
-
-
-
     return (
         <section className="midia">
             <div className="container-xl">

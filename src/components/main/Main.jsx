@@ -182,7 +182,7 @@ function Main(props) {
                 </div>
             </section>
 
-            <section className="reviews container-xl">
+            <section className="reviews">
                 <div className="reviews__content">
                     <div className="reviews__header">
                         <h2 className="reviews__title fw-bold mb-0">Resenhas</h2>
@@ -224,11 +224,10 @@ function Main(props) {
             <Midia videos={videos} posters={posters} backgrounds={backgrounds}/>
             <Recommendation
                 movies={recommendations}
-                onSelectMovie={onSelectMovie}
-                loading={loading}
+                 // 🔹 Passando as recomendações como props
+                // onSelectMovie={onSelectMovie} 
+                // loading={loading}
             />
-
-            
         </main>
     );
 }
