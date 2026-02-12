@@ -5,10 +5,22 @@ import Recommendation from '../main components/recommendation/Recommendation'
 import Midia from '../main components/midia/Midia'
 import './Main.css'
 
-function Main({ movie, director, cast, reviews, videos }) {
+function Main(props) {
 
+    const {
+        movie,
+        director,
+        config,
+        cast,
+        reviews,
+        videos,
+        posters,
+        backgrounds,
+        onSelectMovie,
+        recommendations,
+        loading = false, // 🔹 valor padrão booleano
+    } = props;
 
-    console.log(videos, " Camarão MAIN")
 
     if (!movie || !director) {
         return <div>Carregando...</div>;
@@ -63,7 +75,6 @@ function Main({ movie, director, cast, reviews, videos }) {
                     </div>
                 </div>
             </SwiperSlide>
-            
         ));
     }
 
@@ -71,16 +82,16 @@ function Main({ movie, director, cast, reviews, videos }) {
     function handleReview () {
         return reviews.map(review => (
             <SwiperSlide>
-            <div className="reviews__item">
-                <article className="review-card">
-                    <p className="review-card__content">{review.content}</p>
-                    <p className="review-card__author">por <strong>{review.author}</strong></p>
-                    <div className="review-card__footer">
-                        <p>21 de julho de 2023</p>
-                        <p>Nota: <strong>9</strong>/10</p>
-                    </div>
-                </article>
-            </div>
+                <div className="reviews__item">
+                    <article className="review-card">
+                        <p className="review-card__content">{review.content}</p>
+                        <p className="review-card__author">por <strong>{review.author}</strong></p>
+                        <div className="review-card__footer">
+                            <p>21 de julho de 2023</p>{/*TODO*/}
+                            <p>Nota: <strong>9</strong>/10</p> {/*TODO*/}
+                        </div>
+                    </article>
+                </div>
             </SwiperSlide>
         ));
     }
@@ -210,8 +221,13 @@ function Main({ movie, director, cast, reviews, videos }) {
                     </div>
                 </div>
             </section>
-            <Midia videos={videos}/>
-            <Recommendation />
+            <Midia videos={videos} posters={posters} backgrounds={backgrounds}/>
+            <Recommendation
+                movies={recommendations}
+                onSelectMovie={onSelectMovie}
+                loading={loading}
+            />
+
             
         </main>
     );

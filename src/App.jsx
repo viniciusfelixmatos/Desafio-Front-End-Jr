@@ -18,13 +18,26 @@ function App() {
   const [config, setConfig] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [videos, setVideos] = useState([]);
+  /* POSTERS DOS FILMES */
+  const [posters, setPosters] = useState([]);
+  /* POSTERS DOS FILMES / BACKDROPS */
+  const [backgrounds, setBackgrounds] = useState([]);
+
+  const [movieId, setMovieId] = useState(346698);
+  const [loading, setLoading] = useState(false);
+  const [recommendations, setRecommendations] = useState([]);
+
+  function handleSelectMovie(id) {
+    setLoading(true);   // dispara loading
+    setMovieId(id);     // muda o ID do filme → useEffect vai buscar novos dados
+  }
 
   useEffect(() => {
     async function fetchMovieData() {
       try {
         /* Dados do Filme */ 
         const movieResponse = await axios.get(
-          'https://api.themoviedb.org/3/movie/346698',
+          `https://api.themoviedb.org/3/movie/${movieId}`,
           {
             headers: {
               Authorization: `Bearer ${Token}`
@@ -37,7 +50,7 @@ function App() {
 
         /* Dados ?? */ 
         const configResponse = await axios.get (
-          'https://api.themoviedb.org/3/configuration',
+          `https://api.themoviedb.org/3/configuration`,
           {
             headers: {
               Authorization: `Bearer ${Token}`
@@ -50,7 +63,7 @@ function App() {
 
         /* Dados das reviews do Filme */
         const reviewResponse = await axios.get(
-          'https://api.themoviedb.org/3/movie/346698/reviews',
+          `https://api.themoviedb.org/3/movie/${movieId}/reviews`,
           {
             headers: {
               Authorization: `Bearer ${Token}`
@@ -63,7 +76,7 @@ function App() {
 
         /* Dados dos videos do Filme */
         const videosResponse = await axios.get(
-          'https://api.themoviedb.org/3/movie/346698/videos',
+          `https://api.themoviedb.org/3/movie/${movieId}/videos`,
           {
             headers: {
               Authorization: `Bearer ${Token}`
@@ -74,15 +87,35 @@ function App() {
           }
         )
 
-        /* Dados dos crditos do Filme */
-        const creditsResponse = await axios.get(
-          'https://api.themoviedb.org/3/movie/346698/credits',
+        /* Dados dos posters do Filme */
+        const postersResponse = await axios.get(
+          `https://api.themoviedb.org/3/movie/${movieId}/images`,
           {
             headers: {
               Authorization: `Bearer ${Token}`
             }
           }
         );
+
+        /* Dados dos crditos do Filme */
+        const creditsResponse = await axios.get(
+          `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+          {
+            headers: {
+              Authorization: `Bearer ${Token}`
+            }
+          }
+        );
+
+        const recommendationsResponse = await axios.get(
+          `https://api.themoviedb.org/3/movie/${movieId}/recommendations`,
+          {
+            headers: { Authorization: `Bearer ${Token}` },
+            params: { language: 'pt-BR' }
+          }
+        );
+
+
 
         const directorData = creditsResponse.data.crew.find(
           person => person.job === 'Director'
@@ -97,8 +130,12 @@ function App() {
         setConfig(configResponse.data);
         setReviews(reviewResponse.data.results);
         setVideos(videosResponse.data.results);
+        setPosters(postersResponse.data.posters);
+        setBackgrounds(postersResponse.data.backdrops);
+        setRecommendations(recommendationsResponse.data.results);
 
         console.log(movieResponse.data);
+        console.log(postersResponse.data.posters, 'CARREGOU OS POSTERS');
         console.log(movieResponse);
         console.log(directorData);
         console.log(creditsResponse);
@@ -109,12 +146,16 @@ function App() {
       }
     }
     fetchMovieData();
-  }, [])
+  }, [movieId])
 
   return (
     <>
       <Header />
-      <Main movie={Movie} director={director} config={config} cast={cast} reviews={reviews} videos={videos}/>
+      <Main movie={Movie} director={director} config={config} cast={cast} reviews={reviews} videos={videos} posters={posters} 
+      backgrounds={backgrounds} 
+      onSelectMovie={handleSelectMovie} 
+      recommendations={recommendations}
+      loading={loading}/>
       <Footer />
     </>
   );
