@@ -23,7 +23,9 @@ function App() {
   /* POSTERS DOS FILMES / BACKDROPS */
   const [backgrounds, setBackgrounds] = useState([]);
 
+  /* ID DO FILME */
   const [movieId, setMovieId] = useState(346698);
+
   const [loading, setLoading] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
 
@@ -141,21 +143,33 @@ function App() {
         console.log(creditsResponse);
         console.log(reviewResponse);
         console.log(videosResponse);
+
+        console.log(movieId)
+
       } catch (error) {
         console.error(error);
       }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
     fetchMovieData();
   }, [movieId])
 
+
   return (
     <>
       <Header />
-      <Main movie={Movie} director={director} config={config} cast={cast} reviews={reviews} videos={videos} posters={posters} 
+      <Main 
+      movie={Movie} 
+      director={director} config={config} cast={cast} reviews={reviews} videos={videos} posters={posters} 
       backgrounds={backgrounds} 
       onSelectMovie={handleSelectMovie} 
       recommendations={recommendations}
-      loading={loading}/>
+      loading={loading}
+      setMovieId={setMovieId}/>
       <Footer />
     </>
   );

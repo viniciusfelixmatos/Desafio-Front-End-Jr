@@ -4,10 +4,7 @@ import 'swiper/css'
 
 import './Recommendation.css'
 
-function Recommendation({ movies }) {
-
-
-    const [changedMovieId, setChangedMovieId] = useState();
+function Recommendation({ movies, setMovieId }) {
 
     // Função para criar os cards de recomendações
     function handleRecommendations() {
@@ -26,10 +23,8 @@ function Recommendation({ movies }) {
     const changeFilm = (movie) => () => {
         // Lógica para atualizar o filme selecionado
         console.log(movie.id, 'SIUUUUUUUUUUU') // TODO
-        setChangedMovieId(movie.id); // Atualiza o estado com o ID do filme selecionado
+        setMovieId(movie.id); // Atualiza o estado com o ID do filme selecionado
     }
-
-    console.log(changedMovieId, "Id mudado");
 
     return (
         <section className="recomm">

@@ -18,7 +18,8 @@ function Main(props) {
         backgrounds,
         onSelectMovie,
         recommendations,
-        loading = false, // 🔹 valor padrão booleano
+        loading = false,
+        setMovieId // 🔹 valor padrão booleano
     } = props;
 
 
@@ -168,7 +169,7 @@ function Main(props) {
                             slidesPerView={6}
                             breakpoints={{
                                 0: { slidesPerView: 2 },
-                                576: { slidesPerView: 3 },
+                                576: { slidesPerView: 2 },
                                 768: { slidesPerView: 4 },
                                 992: { slidesPerView: 6 }
                             }}
@@ -182,48 +183,46 @@ function Main(props) {
                 </div>
             </section>
 
+            {/* SEÇÃO DE RESENHAS */}
             <section className="reviews">
-                <div className="reviews__content">
-                    <div className="reviews__header">
-                        <h2 className="reviews__title fw-bold mb-0">Resenhas</h2>
-                        <a href="#" className="button__link">Ver mais</a>
-                    </div>
-                    <div className="reviews__grid">
-                        <Swiper
-                            className="cast-swiper"
-                            spaceBetween={10}
-                            slidesPerView={6}
-                            breakpoints={{
-                                0: { slidesPerView: 1 },
-                                576: { slidesPerView: 1 },
-                                768: { slidesPerView: 1 },
-                                992: { slidesPerView: 2 }
-                            }}
-                        >
-                        {/* Função para renderizar os Cards do Review*/}  
-                        {handleReview()}      
-                        {/* Utilização do Map no array 'reviews' 
-                        <div className="reviews__item">
-                            <article className="review-card">
-                                <p>Título: Uma Celebração Encantadora e Empoderadora - "Barbie" (2023) <br></br><br></br>Barbie" é uma adorável surpresa cinematográfica que honra o icônico ícone cultural que é a boneca Barbie. Sob a brilhante interpretação de Margot Robbie, o filme é um verdadeiro deleite, repleto de charme, humor e vulnerabilidade, o que torna Robbie uma escolha perfeita para dar vida à amada boneca...</p>
-                                <p className="review-card__author">por <strong>Achilles</strong></p>
-                                <div className="review-card__footer">
-                                    <p>26 de julho de 2023</p>
-                                    <p>Nota: <strong>10</strong>/10</p>
-                                </div>
-                            </article>
+                <div className="container-xl">
+                    <div className="reviews__content">
+                        
+                        <div className="reviews__header">
+                            <h2 className="reviews__title fw-bold mb-0">Resenhas</h2>
+                            <a href="#" className="button__link">Ver mais</a>
                         </div>
-                        */}
 
+                        <div className="reviews__grid">
+                            <Swiper
+                                className="review-swiper"
+                                spaceBetween={20}
+                                slidesPerView={1}
 
-                        </Swiper>
+                                direction="horizontal" // padrão
+                                breakpoints={{
+                                    320: {
+                                        direction: "vertical",
+                                        slidesPerView: 2
+                                    },
+                                    992: {
+                                        direction: "horizontal",
+                                        slidesPerView: 2
+                                    }
+                                }}
+                                >
+                                {handleReview()}
+                            </Swiper>
+                        </div>
 
                     </div>
                 </div>
             </section>
+
             <Midia videos={videos} posters={posters} backgrounds={backgrounds}/>
             <Recommendation
                 movies={recommendations}
+                setMovieId={setMovieId}
                  // 🔹 Passando as recomendações como props
                 // onSelectMovie={onSelectMovie} 
                 // loading={loading}

@@ -170,7 +170,9 @@ main {
     padding-bottom: 2.5rem;
 }
 
+/* ========================= */
 /* REVIEWS */
+/* ========================= */
 
 .reviews {
     font-family: var(--primary-font);
@@ -178,70 +180,133 @@ main {
 
 .reviews__header {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    gap: 0.9375rem;
+    justify-content: space-between;
 }
 
 .reviews__content {
     display: flex;
     flex-direction: column;
-}
-
-.reviews__grid {
-    display: flex;
-    flex-direction: row;
     gap: 2rem;
 }
 
-.reviews__item {
-    padding-top: 1.25rem;
+.reviews__grid {
+    width: 100%;
 }
+
+/* ========================= */
+/* SWIPER BASE */
+/* ========================= */
+
+.review-swiper {
+    width: 100%;
+}
+
+/* Slide padrão */
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    height: auto; /* 🔥 IMPORTANTE */
+}
+
+/* ========================= */
+/* ITEM */
+/* ========================= */
+
+.reviews__item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ========================= */
+/* CARD BASE (mobile first) */
+/* ========================= */
 
 .review-card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 320px;
+
     background-color: var(--unnamed-color-eadbc8);
-    border-radius: 0.9375rem;
-    max-width: 38.125rem;
-    max-height: 35.625rem;
-    padding: 1.875rem;
-    font-size: 1.5rem;
-    gap: 1.25rem;
+    border-radius: 15px;
+
+    padding: 24px;
+    font-size: 1.1rem;
+
+    box-sizing: border-box;
 }
+
+/* ========================= */
+/* TABLET - 768px (VERTICAL) */
+/* ========================= */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    /* ❌ REMOVIDO height fixa do swiper */
+
+    .swiper-slide {
+        justify-content: flex-start;
+    }
+
+    .review-card {
+        width: 714px;
+        height: 365px;
+        font-size: 1.2rem;
+    }
+}
+
+/* ========================= */
+/* DESKTOP - 992px+ */
+/* ========================= */
+
+@media (min-width: 992px) {
+
+    .swiper-slide {
+        justify-content: center;
+    }
+
+    .review-card {
+        width: 610px;
+        height: 392px;
+        font-size: 1.25rem;
+    }
+}
+
+/* ========================= */
+/* CONTEÚDO COM SCROLL */
+/* ========================= */
+
+.review-card__content {
+    overflow-y: auto;
+    flex: 1;
+    margin-bottom: 1rem;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--unnamed-color-102c57) transparent;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
 
 .review-card__footer {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
 }
 
 .review-card__footer p strong {
-    color: var(--unnamed-color-102c57);;
+    color: var(--unnamed-color-102c57);
     font-weight: bold;
 }
 
 .review-card p {
     margin-bottom: 0;
-}
-
-.review-card__content {
-    overflow-y: auto;
-    max-height: 24rem;
-    scrollbar-width: auto;
-    scrollbar-color: var(--unnamed-color-102c57) var(--unnamed-color-eadbc8);
-}
-
-.review-card__author strong {
-    color: var(--unnamed-color-102c57);;
-    font-weight: bold;
-}
-
-.reviews__title {
-    color: var(--unnamed-color-102c57);
-    font-size: 2.25rem;
 }
 
 @media (max-width: 768px) {
