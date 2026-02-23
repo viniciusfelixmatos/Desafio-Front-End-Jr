@@ -29,9 +29,12 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
 
+  /* ESCRITORES DO FILME */
+  const [writers, setWriters] = useState([]);
+
   function handleSelectMovie(id) {
-    setLoading(true);   // dispara loading
-    setMovieId(id);     // muda o ID do filme → useEffect vai buscar novos dados
+    setLoading(true);
+    setMovieId(id);
   }
 
   useEffect(() => {
@@ -136,6 +139,16 @@ function App() {
         setBackgrounds(postersResponse.data.backdrops);
         setRecommendations(recommendationsResponse.data.results);
 
+        /* Pegando escritores do Filme */
+        const creditsData = creditsResponse.data;
+
+        const writers = creditsData.crew.filter(person =>
+          person.job === "Writer" || person.job === "Screenplay"
+        );
+
+        setWriters(writers);
+
+
         console.log(movieResponse.data);
         console.log(postersResponse.data.posters, 'CARREGOU OS POSTERS');
         console.log(movieResponse);
@@ -169,7 +182,9 @@ function App() {
       onSelectMovie={handleSelectMovie} 
       recommendations={recommendations}
       loading={loading}
-      setMovieId={setMovieId}/>
+      setMovieId={setMovieId}
+      writers={writers}
+      />
       <Footer />
     </>
   );

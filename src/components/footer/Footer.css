@@ -49,3 +49,7 @@ footer {
 .footer__column a:hover::after {
     width: 100%;
 }
+
+.footer__row {
+    gap: 1.875rem;
+}

@@ -19,11 +19,26 @@ function Midia({videos, posters, backgrounds}) {
     console.log(videos.key, "CAMARAO");
 
     function handleVideos() {
-    if (!videos || videos.length === 0) return null;
 
-    return videos
-        .filter(video => video.site === "YouTube")
-        .map(video => (
+        if (!videos || videos.length === 0) {
+            return (
+                <div className="empty-state">
+                    <p>Vídeos não disponíveis</p>
+                </div>
+            );
+        }
+
+        const youtubeVideos = videos.filter(video => video.site === "YouTube");
+
+        if (youtubeVideos.length === 0) {
+            return (
+                <div className="empty-state">
+                    <p>Vídeos não disponíveis</p>
+                </div>
+            );
+        }
+
+        return youtubeVideos.map(video => (
             <SwiperSlide key={video.id || video.key}>
                 <div className="item-midia">
                     <iframe
@@ -42,7 +57,14 @@ function Midia({videos, posters, backgrounds}) {
 
     {/* Função para criar Os posters*/}
     function handlePosters() {
-        if (!posters || posters.length === 0) return null;
+
+        if (!posters || posters.length === 0) {
+            return (
+                <div className="empty-state">
+                    <p>Posters não disponíveis</p>
+                </div>
+            );
+        }
 
         return posters
             .slice(0, 8)
@@ -135,19 +157,26 @@ function Midia({videos, posters, backgrounds}) {
                         <h2>Posters ({posters.slice(0, 8).length})</h2>
                         <a href="#" className="button__link">Ver mais</a>
                     </div>
+
                     <div className="midia__poster-content">
-                        <Swiper
-                            spaceBetween={20}
-                            slidesPerView={'4'}
-                            breakpoints={{
-                                320: { slidesPerView: 1, spaceBetween: 20 },
-                                576: { slidesPerView: 3 },
-                                992: { slidesPerView: 4 }
-                            }}
-                        >
-                            {/* Função para renderizar os posters*/}
-                            {handlePosters()}
-                        </Swiper>
+                        {posters.length > 1 ? (
+                            <Swiper
+                                spaceBetween={20}
+                                slidesPerView={4}
+                                watchOverflow={true}
+                                breakpoints={{
+                                    320: { slidesPerView: 1 },
+                                    576: { slidesPerView: 3 },
+                                    992: { slidesPerView: 4 }
+                                }}
+                            >
+                                {handlePosters()}
+                            </Swiper>
+                        ) : (
+                            <div className="empty-state">
+                                <p>Poster não disponível.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="midia__background pb-5">

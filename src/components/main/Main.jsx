@@ -16,10 +16,9 @@ function Main(props) {
         videos,
         posters,
         backgrounds,
-        onSelectMovie,
         recommendations,
-        loading = false,
-        setMovieId // 🔹 valor padrão booleano
+        setMovieId,
+        writers,
     } = props;
 
 
@@ -64,12 +63,22 @@ function Main(props) {
 
     /* Função para rendeziar os cards do Elenco */ 
     function handleCast() {
-        /* Utilização do Map no array 'cast' */
+
+        if (!cast || cast.length === 0) {
+            return (
+                <div className="empty-state">
+                    <p>Elenco não disponível</p>
+                </div>
+            );
+        }
+
         return cast.map(member => (
-            /*Elemento Swiper que contém o card*/
-            <SwiperSlide>
+            <SwiperSlide key={member.id}>
                 <div className="item">
-                    <img src={getImageUrl(member.profile_path)} alt={member.name} />
+                    <img
+                        src={getImageUrl(member.profile_path)}
+                        alt={member.name}
+                    />
                     <div className="item__container">
                         <h3>{member.name}</h3>
                         <p>{member.character}</p>
@@ -80,16 +89,38 @@ function Main(props) {
     }
 
     /* Função para renderizar os cards das Reviews */
-    function handleReview () {
+    function handleReview() {
+
+        if (!reviews || reviews.length === 0) {
+            return (
+                <div className="empty-state">
+                    <p>Nenhuma resenha disponível</p>
+                </div>
+            );
+        }
+
         return reviews.map(review => (
-            <SwiperSlide>
+            <SwiperSlide key={review.id}>
                 <div className="reviews__item">
                     <article className="review-card">
-                        <p className="review-card__content">{review.content}</p>
-                        <p className="review-card__author">por <strong>{review.author}</strong></p>
+                        <p className="review-card__content">
+                            {review.content}
+                        </p>
+
+                        <p className="review-card__author">
+                            por <strong>{review.author}</strong>
+                        </p>
+
                         <div className="review-card__footer">
-                            <p>21 de julho de 2023</p>{/*TODO*/}
-                            <p>Nota: <strong>9</strong>/10</p> {/*TODO*/}
+                            <p>
+                                {review.created_at
+                                    ? new Date(review.created_at).toLocaleDateString("pt-BR")
+                                    : "Data não informada"}
+                            </p>
+
+                            <p>
+                                Nota: <strong>{review.author_details?.rating ?? "—"}</strong>/10
+                            </p>
                         </div>
                     </article>
                 </div>
@@ -108,19 +139,24 @@ function Main(props) {
                 <div className="main__content">
                     <div className="main__film-info">
                         <h2>
-                            {movie.title} <span>(2023)</span>
+                            {movie.title} <span>({movie.release_date?.split('-')[0]})</span>
                         </h2>
                         <div className="main__section">
                             <h3>Gênero:</h3>
                             <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
                         </div>
-                        <div className="main__section">
+                        <div className="main__sinopse">
                             <h3>Sinopse:</h3>
-                            <p>{movie.overview}</p>
+
+                            {movie.overview && movie.overview.trim().length > 0 ? (
+                                <p>{movie.overview}</p>
+                            ) : (
+                                <p className="text-muted">Sinopse não disponível.</p>
+                            )}
                         </div>
                     </div>
-                    <div className="container">
-                        <div className="row justify-content-between">
+                    <div className="main__additional-info">
+                        <div className="row gx-0 justify-content-between main__details">
                             <div className="col ps-0">
                                 <div>
                                     <h3>Dirigido por:</h3>
@@ -138,7 +174,11 @@ function Main(props) {
                             <div className="col ps-0">
                                 <div>
                                     <h3>Escrito por:</h3>
-                                    <p>Greta Gerwig, Noah Baumbach</p>
+                                    <p>
+                                        {writers.length > 0
+                                            ? writers.map(writer => writer.name).join(", ")
+                                            : "Roteiro não informado"}
+                                    </p>
                                 </div>
                                 <div>
                                     <h3>Idioma original:</h3>
@@ -146,7 +186,7 @@ function Main(props) {
                                 </div>
                                 <div>
                                     <h3>Receita:</h3>
-                                    <p>$1,280,313,193.00</p>
+                                    <p>{movie?.revenue > 0? formatCurrency(movie.revenue): "Receita não informada"}</p>
                                 </div>
                             </div>
                         </div>
@@ -167,8 +207,10 @@ function Main(props) {
                             className="cast-swiper"
                             spaceBetween={10}
                             slidesPerView={6}
+                            centeredSlides={true}
                             breakpoints={{
-                                0: { slidesPerView: 2 },
+                                0: { slidesPerView: 1 },
+                                320: {  slidesPerView: 1.2},
                                 576: { slidesPerView: 2 },
                                 768: { slidesPerView: 4 },
                                 992: { slidesPerView: 6 }
@@ -198,19 +240,19 @@ function Main(props) {
                                 className="review-swiper"
                                 spaceBetween={20}
                                 slidesPerView={1}
-
-                                direction="horizontal" // padrão
+                                direction="horizontal"
                                 breakpoints={{
-                                    320: {
-                                        direction: "vertical",
+                                    576: {
+                                        slidesPerView: 1
+                                    },
+                                    768: {
                                         slidesPerView: 2
                                     },
-                                    992: {
-                                        direction: "horizontal",
+                                    1200: {
                                         slidesPerView: 2
                                     }
                                 }}
-                                >
+                            >
                                 {handleReview()}
                             </Swiper>
                         </div>

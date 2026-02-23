@@ -14,13 +14,13 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    max-height: 37.5rem;
+    align-items: flex-start;
+    gap: 1.875rem;
 }
 
 .main__banner {
-    max-width: 430px;
-    max-height: 630px;
+    max-width: 26.875rem;
+    max-height: 39.375rem;
 }
 
 .main__banner img {
@@ -43,13 +43,37 @@ main {
 }
 
 .main__content h2 {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: bold;
     color: var(--unnamed-color-102c57);
 }
 
 .main__content span {
     color: var(--unnamed-color-102c57);
+}
+
+.main__details p {
+    margin-bottom: 0;
+    height: 4.375rem;
+}
+
+.main__sinopse {
+    width: 100%;
+    height: 100%;
+}
+
+.empty-state {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.empty-state p {
+    font-size: 1.5rem;
+    color: var(--unnamed-color-102c57);
+    font-family: var(--primary-font);
+    font-weight: bold;
 }
 
 /* MAIN CAST */
@@ -103,37 +127,6 @@ main {
     padding: 0 0.625rem;
 }
 
-/* Gradiente lateral (efeito fade) */
-.cast__carousel::before,
-.cast__carousel::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 6.25rem;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.cast__carousel::before {
-    left: 0;
-    background: linear-gradient(
-        to right,
-        var(--cor-de-fundo, var(--unnamed-color-dfd7bf)),
-        transparent
-    );
-}
-
-.cast__carousel::after {
-    right: 0;
-    background: linear-gradient(
-        to left,
-        var(--cor-de-fundo, var(--unnamed-color-dfd7bf)),
-        transparent
-    );
-}
-
-/* Card do elenco */
 .item {
     display: flex;
     flex-direction: column;
@@ -146,12 +139,11 @@ main {
     text-align: center;
 }
 
-/* Imagem */
 .cast__carousel img {
-    width: 190px;
-    height: 190px;
-    max-width: 190px;
-    max-height: 190px;
+    width: 11.875rem;
+    height: 11.875rem;
+    max-width: 11.875rem;
+    max-height: 11.875rem;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -170,9 +162,39 @@ main {
     padding-bottom: 2.5rem;
 }
 
-/* ========================= */
+.cast-swiper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.75rem;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    background: linear-gradient(
+        to right,
+        var(--unnamed-color-eadbc8),
+        transparent
+    );
+}
+
+.cast-swiper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3.75rem;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    background: linear-gradient(
+        to left,
+        var(--unnamed-color-eadbc8),
+        transparent
+    );
+}
+
 /* REVIEWS */
-/* ========================= */
 
 .reviews {
     font-family: var(--primary-font);
@@ -182,6 +204,10 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.reviews__title {
+    color: var(--unnamed-color-102c57);
 }
 
 .reviews__content {
@@ -194,9 +220,7 @@ main {
     width: 100%;
 }
 
-/* ========================= */
 /* SWIPER BASE */
-/* ========================= */
 
 .review-swiper {
     width: 100%;
@@ -207,12 +231,10 @@ main {
 .swiper-slide {
     display: flex;
     justify-content: center;
-    height: auto; /* 🔥 IMPORTANTE */
+    height: auto;
 }
 
-/* ========================= */
 /* ITEM */
-/* ========================= */
 
 .reviews__item {
     display: flex;
@@ -220,49 +242,41 @@ main {
     width: 100%;
 }
 
-/* ========================= */
 /* CARD BASE (mobile first) */
-/* ========================= */
 
 .review-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     width: 100%;
-    min-height: 320px;
-
+    min-height: 20rem;
     background-color: var(--unnamed-color-eadbc8);
-    border-radius: 15px;
-
-    padding: 24px;
+    border-radius: 0.9375rem;
+    padding: 1.5rem;
     font-size: 1.1rem;
-
     box-sizing: border-box;
 }
 
-/* ========================= */
+.review-card__author {
+    padding-top: 0.625rem;
+}
+
 /* TABLET - 768px (VERTICAL) */
-/* ========================= */
 
 @media (min-width: 768px) and (max-width: 991px) {
-
-    /* ❌ REMOVIDO height fixa do swiper */
 
     .swiper-slide {
         justify-content: flex-start;
     }
 
     .review-card {
-        width: 714px;
-        height: 365px;
+        width: 44.625rem;
+        height: 22.8125rem;
         font-size: 1.2rem;
     }
 }
 
-/* ========================= */
 /* DESKTOP - 992px+ */
-/* ========================= */
 
 @media (min-width: 992px) {
 
@@ -271,28 +285,23 @@ main {
     }
 
     .review-card {
-        width: 610px;
-        height: 392px;
+        width: 38.125rem;
+        height: 24.5rem;
         font-size: 1.25rem;
     }
 }
 
-/* ========================= */
 /* CONTEÚDO COM SCROLL */
-/* ========================= */
 
 .review-card__content {
     overflow-y: auto;
     flex: 1;
     margin-bottom: 1rem;
-
     scrollbar-width: thin;
     scrollbar-color: var(--unnamed-color-102c57) transparent;
 }
 
-/* ========================= */
 /* FOOTER */
-/* ========================= */
 
 .review-card__footer {
     display: flex;
@@ -337,7 +346,20 @@ main {
     }
 
     .review-card {
-        max-height: none;
+        max-height: 23.75rem;
+        overflow-y: auto;
+        padding-right: 0.5rem;
     }
+
+    .button__link {
+        display: flex;
+        width: 6.5rem;
+        height: 2.1875rem;
+        font-size: 1.125rem;
+        padding: 5px;
+        justify-content: center;
+    }
+
+    
 
 }
