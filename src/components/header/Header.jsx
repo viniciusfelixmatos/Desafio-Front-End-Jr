@@ -13,7 +13,7 @@ function Header() {
       <header>
         <div className="container-xl header__content">
           <h1>
-            <img src="../public/imgs/logo-clara.png" alt="Logo PlayCube" />
+            <img src=".../public/imgs/logo-clara.png" alt="Logo PlayCube" />
           </h1>
 
           <div
