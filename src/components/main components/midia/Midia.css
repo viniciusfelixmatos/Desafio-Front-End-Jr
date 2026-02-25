@@ -94,6 +94,14 @@
     background: transparent;
 }
 
+.gallery__item {
+    cursor: pointer;
+}
+
+.badge-lenght {
+    color: var(--unnamed-color-eadbc8);
+}
+
 @media (max-width: 768px) {
     .midia__content-header h2 {
         font-size: 1.5rem;

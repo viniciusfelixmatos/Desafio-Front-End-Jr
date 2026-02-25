@@ -35,14 +35,17 @@ function Recommendation({ movies, setMovieId }) {
 
                 <div className="recomm-carousel">
                     <Swiper
-                        spaceBetween={20}
-                        slidesPerView={5}
-                        breakpoints={{
-                            0: { slidesPerView: 1 },
-                            576: { slidesPerView: 2 },
-                            992: { slidesPerView: 5 }
-                        }}
-                    >
+                            spaceBetween={10}
+                            slidesPerView={6}
+                            
+                            breakpoints={{
+                                0: { slidesPerView: 1 },
+                                320: {  slidesPerView: 2},
+                                576: { slidesPerView: 2 },
+                                768: { slidesPerView: 4 },
+                                992: { slidesPerView: 6 }
+                            }}
+                        >
                         {handleRecommendations()}
                     </Swiper>
                 </div>

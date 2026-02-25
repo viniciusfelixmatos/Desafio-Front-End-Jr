@@ -93,7 +93,7 @@ function Midia({videos, posters, backgrounds}) {
             <SwiperSlide key={background.file_path}>
                 <img
                     src={`https://image.tmdb.org/t/p/w780${background.file_path}`}
-                    className="img-fluid w-100 rounded"
+                    className="img-fluid w-100 rounded gallery__item"
                     data-bs-toggle="modal"
                     data-bs-target="#galleryModal"
                     onClick={() =>
@@ -130,7 +130,7 @@ function Midia({videos, posters, backgrounds}) {
                 </div>
                 <div className="midia__videos pb-5">
                     <div className="midia__content-header">
-                        <h2>Vídeos ({videos.length})</h2>
+                        <h2>Vídeos <span className="badge-lenght">({videos.length})</span></h2>
                         <a href="#" className="button__link">Ver mais</a>
                     </div>
                     <div className="midia__videos-content">
@@ -157,7 +157,7 @@ function Midia({videos, posters, backgrounds}) {
                 </div>
                 <div className="midia__poster pb-5">
                     <div className="midia__content-header">
-                        <h2>Posters ({posters.slice(0, 8).length})</h2>
+                        <h2>Posters <span className="badge-lenght">({posters.slice(0, 8).length})</span></h2>
                         <a href="#" className="button__link">Ver mais</a>
                     </div>
 
@@ -184,7 +184,7 @@ function Midia({videos, posters, backgrounds}) {
                 </div>
                 <div className="midia__background pb-5">
                     <div className="midia__content-header">
-                        <h2>Imagens de fundo ({backgrounds?.slice(0, 30).length || 0})</h2>
+                        <h2>Imagens de fundo <span className="badge-lenght">({backgrounds?.slice(0, 30).length || 0})</span></h2>
                         <a href="#" className="button__link">Ver mais</a>
                     </div>
 
