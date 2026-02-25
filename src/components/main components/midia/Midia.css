@@ -19,10 +19,11 @@
 }
 
 .item-midia {
+    display: flex;
+    align-items: center !important;
     width: 25rem;
     height: 14.0625rem;
     border-radius: 0.625rem;
-    z-index: 2;
 }
 
 .item-background img {
@@ -34,7 +35,10 @@
 
 .swiper-slide {
     overflow: visible;
-    pointer-events: all;
+}
+
+.swiper-wrapper {
+    pointer-events: all !important;
 }
 
 .midia__poster-content {
@@ -68,6 +72,26 @@
     height: 21.25rem;
     background-color: blue;
     border-radius: 0.625rem;
+}
+
+.video-overlay-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+}
+
+.video-overlay-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
 }
 
 @media (max-width: 768px) {

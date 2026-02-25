@@ -39,8 +39,11 @@ function Midia({videos, posters, backgrounds}) {
         }
 
         return youtubeVideos.map(video => (
+
             <SwiperSlide key={video.id || video.key}>
                 <div className="item-midia">
+                    <div className="video-overlay-left"></div>
+                    <div className="video-overlay-right"></div>
                     <iframe
                         width="400"
                         height="225"
@@ -133,7 +136,7 @@ function Midia({videos, posters, backgrounds}) {
                     <div className="midia__videos-content">
                         <Swiper
                             modules={[Navigation, Pagination, Keyboard, Mousewheel]}
-                            spaceBetween={20}
+                            spaceBetween={40}
                             slidesPerView={1}
                             pagination={{ clickable: true }}
                             keyboard={{ enabled: true }}
@@ -143,7 +146,7 @@ function Midia({videos, posters, backgrounds}) {
                             breakpoints={{
                                 0: { slidesPerView: 1 },
                                 576: { slidesPerView: 2 },
-                                992: { slidesPerView: 2 },
+                                992: { slidesPerView: 3 },
                                 1200: { slidesPerView: 3 }
                             }}
                         >
