@@ -6,7 +6,7 @@ function Footer() {
         <footer>
             <div className="footer__container d-flex flex-row flex-wrap container-xl">
                 <div className="footer__logo">
-                    <img src="../public/imgs/logo-escura.png"></img>
+                    <img src="/imgs/logo-escura.png"></img>
                 </div>
                 <nav className="footer__nav">
                     <div className="footer-ul__container">
