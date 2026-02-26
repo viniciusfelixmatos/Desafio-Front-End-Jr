@@ -37,7 +37,7 @@ function Recommendation({ movies, setMovieId }) {
                     <Swiper
                             spaceBetween={10}
                             slidesPerView={6}
-                            
+                            className="recomm-swiper"
                             breakpoints={{
                                 0: { slidesPerView: 1 },
                                 320: {  slidesPerView: 2},

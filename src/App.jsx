@@ -12,11 +12,16 @@ function App() {
   const URL = 'https://api.themoviedb.org/3/movie/346698'
   const Token = import.meta.env.VITE_TMDB_TOKEN
 
+  /* STATE PARA ARMAZENAR OS FILMES */
   const [Movie, setMovie] = useState(null);
+  /* STATE PARA ARMAZENAR OS DIRETORES DE CADA FILME */
   const [director, setDirector] = useState("");
+  /* STATE PARA ARMAZENAR O ELENCO DE CADA FILME */
   const [cast, setCast] = useState([]);
   const [config, setConfig] = useState(null);
+  /* STATE PARA ARMAZENAR AS REVIEWS DE CADA FILME */
   const [reviews, setReviews] = useState([]);
+  /* STATE PARA ARMAZENAR OS VÍDEOS DE CADA FILME*/
   const [videos, setVideos] = useState([]);
   /* POSTERS DOS FILMES */
   const [posters, setPosters] = useState([]);

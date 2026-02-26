@@ -5,23 +5,26 @@ import Recommendation from '../main components/recommendation/Recommendation'
 import Midia from '../main components/midia/Midia'
 import './Main.css'
 
+/* Função para importar os props no 'main' */
+/* Os props são variáveis importadas para este arquivo, cada uma tem um propósito especifico */
 function Main(props) {
 
     const {
-        movie,
-        director,
-        config,
-        cast,
-        reviews,
-        videos,
-        posters,
-        backgrounds,
-        recommendations,
-        setMovieId,
-        writers,
+        movie, // Variável que armazena os detalhes do filme selecionado, como título, sinopse, data de lançamento, etc.
+        director, // Variável que armazena as informações do diretor do filme, como nome e outros detalhes relevantes.
+        cast, // Variável que armazena a lista de atores e atrizes que fazem parte do elenco do filme, incluindo seus papéis e outras informações.
+        reviews, // Variável que armazena as resenhas e críticas feitas por usuários ou críticos sobre o filme, incluindo conteúdo, autor e data.
+        videos, // Variável que armazena os vídeos relacionados ao filme, como trailers, clipes e outros conteúdos multimídia.
+        posters,  // Variável que armazena os posteres de cada filme, que são imagens promocionais usadas para divulgar o filme.
+        backgrounds, // Variável que armazena as imagens de fundo relacionadas ao filme, que podem ser usadas para criar uma experiência visual mais imersiva.
+        recommendations, // Variável que armazena uma lista de filmes recomendados com base no filme selecionado, ajudando os usuários a descobrir outros filmes semelhantes.
+        setMovieId, // Variável que permite atualizar o ID do filme selecionado, possibilitando a navegação entre diferentes filmes e a atualização dos detalhes exibidos. Esta variável está sendo exportada para o recommendation
+        writers, // Variável que armazena as informações dos escritores do filme, incluindo seus nomes e outros detalhes relevantes relacionados ao roteiro do filme.
     } = props;
 
 
+
+    // Verificação para garantir que as informações tenham sido carregadas, caso contrário, exibe uma mensagem de carregamento para o usuário.
     if (!movie || !director) {
         return <div>Carregando...</div>;
     }
@@ -41,17 +44,19 @@ function Main(props) {
     // Função para transformar o status do filme
     function transformStatus(status) {
         const StatusMap = {
-            "Released": "Lançado",
+            "Released": "Lançado", // Serve apenas para traduzir o que vem da API para o português
         }
         return StatusMap[status] || status;
     }
 
+    /* Função para buscar imagens, o caminho pode ser alterado tanto para buscar imagens do Elenco quanto dos banners do filme */
     function getImageUrl(path) {
         const baseUrl = "https://image.tmdb.org/t/p/";
         const size = "original";
         return `${baseUrl}${size}${path}`;
     }
 
+    /* Função para formatar os valores monetários (orçamento e receita) em formato de moeda */
     function formatCurrency(value) {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -64,6 +69,7 @@ function Main(props) {
     /* Função para rendeziar os cards do Elenco */ 
     function handleCast() {
 
+        /* Se o cast retornar vázio ou se não tiver nada (0), então exiba a mensagem ao usuário */
         if (!cast || cast.length === 0) {
             return (
                 <div className="empty-state">
@@ -91,6 +97,7 @@ function Main(props) {
     /* Função para renderizar os cards das Reviews */
     function handleReview() {
 
+        /* Se o reviews retornar vázio ou se não tiver nada (0), então exiba a mensagem ao usuário */ 
         if (!reviews || reviews.length === 0) {
             return (
                 <div className="empty-state">
@@ -99,6 +106,7 @@ function Main(props) {
             );
         }
 
+        /* Caso tenha, então crie os SwiperSlide com base na resposta do Review */
         return reviews.map(review => (
             <SwiperSlide key={review.id}>
                 <div className="reviews__item">
@@ -207,10 +215,9 @@ function Main(props) {
                             className="cast-swiper"
                             spaceBetween={10}
                             slidesPerView={6}
-                            centeredSlides={true}
                             breakpoints={{
                                 0: { slidesPerView: 1 },
-                                320: {  slidesPerView: 1.2},
+                                320: {  slidesPerView: 1},
                                 576: { slidesPerView: 2 },
                                 768: { slidesPerView: 4 },
                                 992: { slidesPerView: 6 }

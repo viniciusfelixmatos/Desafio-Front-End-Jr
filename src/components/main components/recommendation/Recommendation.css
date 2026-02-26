@@ -42,3 +42,34 @@
     height: 100%;
 }
 
+.recomm-swiper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.25rem;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    background: linear-gradient(
+        to left,
+        var(--unnamed-color-102c57),
+        transparent
+    );
+}
+
+.recomm-swiper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.25rem;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    background: linear-gradient(
+        to right,
+        var(--unnamed-color-102c57),
+        transparent
+    );
+}
