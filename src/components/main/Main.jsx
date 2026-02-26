@@ -121,6 +121,7 @@ function Main(props) {
 
                         <div className="review-card__footer">
                             <p>
+                                {/* Criação de data formatada */}
                                 {review.created_at
                                     ? new Date(review.created_at).toLocaleDateString("pt-BR")
                                     : "Data não informada"}
